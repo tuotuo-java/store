@@ -14,4 +14,6 @@ public enum Dir {
 
     //好啦 老婆可以手敲代码啦
     //en
+    L,U,R,D
+
 }
