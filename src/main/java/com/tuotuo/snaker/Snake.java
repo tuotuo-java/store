@@ -34,7 +34,7 @@ public class Snake {
                 node=new Node(tail.row,tail.col-1,tail.dir);
                 break;
             case D:
-                nose=new Node(tail.row-1,tail.col,tail.dir);
+                node=new Node(tail.row-1,tail.col,tail.dir);
                 break;
         }
         tail.next=node;
@@ -42,8 +42,8 @@ public class Snake {
         tail=node;
         size++;
     }
-public void addToHead(){
-        Node node=null;
+    public void addToHead(){
+        Node node = null;
         switch(head.dir) {
             case L:
                 node = new Node(head.row, head.col - 1, head.dir);
@@ -62,15 +62,69 @@ public void addToHead(){
         head.prev=node;
         head=node;
         size++;
-        }
-public void draw(Graphics g){
-    Color c=g.getColor();
-    g.setColor(Color.BLACK);
-    g.fillRect(Yard.BLOCK_SIZE*col,Yard.BLOCK_SIZE*row,w,h,);
-    g.setColor(c);
     }
-public void eat(Egg e) {
-        if (this.getRect().intersects(e.getREct())) {
+
+
+
+    public void draw(Graphics g) {
+        if(size <= 0) return;
+        move();
+        for(Node n = head; n!=null; n=n.next) {
+            n.draw(g);
+        }
+
+    }
+
+    private void move() {
+        addToHead();
+        deleteFromTail();
+        checkDead();
+    }
+
+    private void checkDead() {
+        if(head.row < 2||head.col < 0||head.row > Yard.ROWS||head.col > Yard.COLS) {
+            y.stop();
+        }
+        for (Node n = head.next; n!=null; n=n.next){
+            if(head.row == n.row && head.col ==n.col){
+                y.stop();
+            }
+        }
+
+    }
+
+
+    private void deleteFromTail() {
+        if(size==0) return;
+        tail = tail.prev;
+        tail.next=null;
+
+    }
+
+    private class Node{
+        int w = Yard.BLOCK_SIZE;
+        int h = Yard.BLOCK_SIZE;
+        int row , col;
+        Dir dir = Dir.L;
+        Node next = null;
+        Node prev = null;
+
+        public Node(int row, int col, Dir dir) {
+            this.row = row;
+            this.col = col;
+            this.dir = dir;
+        }
+        void draw(Graphics g){
+            Color c=g.getColor();
+            g.setColor(Color.BLACK);
+            g.fillRect(Yard.BLOCK_SIZE*col,Yard.BLOCK_SIZE*row,w,h,);
+            g.setColor(c);
+        }
+    }
+
+
+    public void eat(Egg e) {
+        if (this.getRect().intersects(e.getRect())) {
             e.reAppear();
             this.addToHead();
             y.setScore(y.getScore() + 5);

@@ -46,6 +46,10 @@ public class Egg {
     public void setRow(int row){
         this.row=row;
     }
+
+    public Rectangle getRect() {
+        return rect;
+    }
 }
 
 
