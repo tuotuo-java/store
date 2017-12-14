@@ -88,7 +88,7 @@ public class Yard extends Frame {
                 paintThread.reStart();
             }
             s1.keyPressed1(e);
-            s2.keyPressed2(e);
+//            s2.keyPressed2(e);
         }
 
     }

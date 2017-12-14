@@ -117,7 +117,7 @@ public class Snake {
         void draw(Graphics g){
             Color c=g.getColor();
             g.setColor(Color.BLACK);
-            g.fillRect(Yard.BLOCK_SIZE*col,Yard.BLOCK_SIZE*row,w,h,);
+            g.fillRect(Yard.BLOCK_SIZE*col,Yard.BLOCK_SIZE*row,w,h);
             g.setColor(c);
         }
     }
@@ -127,11 +127,11 @@ public class Snake {
         if (this.getRect().intersects(e.getRect())) {
             e.reAppear();
             this.addToHead();
-            y.setScore(y.getScore() + 5);
+//            y.setScore(y.getScore() + 5);
         }
     }
 public Rectangle getRect(){
-    return new Rectangle(Yard.BLOCK_SIZE*head.col,Yara.BLOCK_SIZE*head.row,head.w,head.h);
+    return new Rectangle();
     }
 
 public void keyPressed1(KeyEvent e){
@@ -139,7 +139,7 @@ public void keyPressed1(KeyEvent e){
     switch (key){
         case KeyEvent.VK_LEFT:
             if(head.dir!=Dir.R)
-                head.dir=Dir.l;
+                head.dir=Dir.L;
             break;
         case KeyEvent.VK_UP:
             if(head.dir!=Dir.D)
@@ -149,7 +149,7 @@ public void keyPressed1(KeyEvent e){
             if(head.dir!=Dir.L)
                 head.dir=Dir.R;
         case KeyEvent.VK_DOWN:
-            if(hea.dir!=Dir.U)
+            if(head.dir!=Dir.U)
                 head.dir=Dir.D;
             break;
     }

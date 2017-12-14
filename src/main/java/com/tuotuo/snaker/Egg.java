@@ -18,7 +18,7 @@ public class Egg {
         this.col=col;
     }
     public Egg(){
-     this(r.nextInt(Yard.ROWS-2)+2,r.nextInt(Yard.COLS)));
+     this(r.nextInt(Yard.ROWS-2)+2,r.nextInt(Yard.COLS));
     }
     public void reAppear(){
         this.row=r.nextInt(Yard.ROWS-2)+2;
@@ -48,7 +48,7 @@ public class Egg {
     }
 
     public Rectangle getRect() {
-        return rect;
+        return new Rectangle();
     }
 }
 
